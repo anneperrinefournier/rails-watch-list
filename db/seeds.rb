@@ -9,16 +9,13 @@
 #   end
 
 require "open-uri"
-
 Bookmark.destroy_all
 Movie.destroy_all
-
-require 'open-uri'
 
 url = 'http://tmdb.lewagon.com/movie/top_rated'
 movies_serialized = URI.open(url).read
 movies = JSON.parse(movies_serialized)['results']
-
+puts "creating"
 movies.each do |movie|
   Movie.create!(
     title: movie['title'],
