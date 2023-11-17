@@ -8,9 +8,16 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-  </head>
 
+  </head>
   <body>
+  <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= asset_path "children.gif", alt: "gif of children seeing a movie" %>);">
+  <div class="container">
+    <h1>Create your movies lists!</h1>
+  </div>
+</div>
+    <div class="container">
     <%= yield %>
+    </div>
   </body>
 </html>

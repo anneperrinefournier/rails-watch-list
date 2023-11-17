@@ -1,0 +1,35 @@
+<h2><%= @list.name %> list</h1>
+
+<%# <%= link_to "Add a movie", new_list_bookmark_path(@list) %>
+<%# ligne ci-dessus ne fonctionne plus comme la route et vue new n’existe plus %>
+
+<%= render "form", bookmarks: @bookmarks %>
+
+<%# Avant on avait un fichier htlm new dans bookmarks et dedans :
+<%= simple_form_for [@list, @bookmark] do |f| %>
+  <%# <%= f.association :movie %>
+   <%# <%= f.input :comment %>
+  <%# <%= f.submit  %>
+<%# <% end %>
+
+<div class="row d-flex gap-3">
+<% @list.movies.each do |movie| %>
+  <% bookmark = Bookmark.where(movie_id: movie.id, list_id: @list.id).first %>
+  <div class="card" style="width: 18rem;">
+      <img src=<%= movie.poster_url %> alt="movie poster" class="card-img-top">
+    <div class="card-body">
+      <div class="card-flex">
+          <div><h5 class="card-title d-inline"><%= movie.title %></h5></div>
+          <div><%= movie.rating %>/10</div>
+      </div>
+      <p class="card-text">
+      <div><%= movie.overview %></div>
+      <div class="comment py-3"><strong>Your comment:</strong> <%= bookmark.comment %></div>
+      <div class="text-end"><%= link_to bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+        <i class="fa-solid fa-trash"></i>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <% end %></p>
+</div>
