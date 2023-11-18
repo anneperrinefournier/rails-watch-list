@@ -7,8 +7,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-
-  resources :lists do
+  root to: 'lists#index'
+  resources :lists, except: :index do
     resources :bookmarks, only: %i[create]
     # plus besoin du new de bookmark comme le new (formulaire) est dans la show de list maintenant
   end
