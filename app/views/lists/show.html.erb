@@ -1,3 +1,9 @@
+<div>
+  <%= link_to root_path do %>
+    <i class="fa-solid fa-arrow-rotate-left"></i> Back
+  <% end %>
+</div>
+
 <% if @list.photo.attached? %>
   <%= cl_image_tag @list.photo.key, width: 400, height: 300, crop: :fill %>
 <% else %>
